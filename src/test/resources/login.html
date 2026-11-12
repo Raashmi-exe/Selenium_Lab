@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo E-commerce Login</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; min-height: 100vh; display: grid; place-items: center;
+            font-family: Arial, sans-serif; color: #172033;
+            background: linear-gradient(135deg, #e9efff, #f7f8fc);
+        }
+        .card {
+            width: min(92vw, 390px); padding: 34px; background: white;
+            border-radius: 16px; box-shadow: 0 14px 45px rgba(25, 40, 80, .12);
+        }
+        h1 { margin: 0 0 8px; font-size: 25px; }
+        p { color: #657089; margin: 0 0 24px; }
+        label { display: block; margin: 14px 0 7px; font-weight: 600; }
+        input {
+            width: 100%; padding: 12px; border: 1px solid #cbd2df;
+            border-radius: 8px; font-size: 15px;
+        }
+        button {
+            width: 100%; margin-top: 22px; padding: 13px; border: 0;
+            border-radius: 8px; color: white; background: #315bea;
+            font-size: 15px; font-weight: 700; cursor: pointer;
+        }
+        #message { min-height: 22px; margin-top: 18px; font-weight: 600; }
+        #message[data-status="success"] { color: #16834b; }
+        #message[data-status="error"] { color: #c33434; }
+        .hint { margin-top: 18px; font-size: 12px; }
+    </style>
+</head>
+<body>
+<main class="card">
+    <h1>Welcome back</h1>
+    <p>Sign in to your demo e-commerce account.</p>
+    <form id="loginForm">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" autocomplete="username" required>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+        <button id="loginButton" type="submit">Sign in</button>
+    </form>
+    <div id="message" role="alert" aria-live="polite"></div>
+    <div class="hint">Demo account: admin / password123</div>
+</main>
+<script>
+    document.getElementById("loginForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const message = document.getElementById("message");
+
+        if (username === "admin" && password === "password123") {
+            message.textContent = "Login successful. Welcome, admin!";
+            message.dataset.status = "success";
+        } else {
+            message.textContent = "Invalid username or password.";
+            message.dataset.status = "error";
+        }
+    });
+</script>
+</body>
+</html>
